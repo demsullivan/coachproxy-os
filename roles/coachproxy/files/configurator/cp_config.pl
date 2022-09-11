@@ -77,7 +77,7 @@ sub create_habridge_device {
   my ($group_id, $device_id, $name, $cmd, $on, $off, $dim) = @_;
 
   my $bridge_id = $group_id * 256 + $device_id;
-  my $unique_id = sprintf("00:00:00:17:88:5E:%02X:%02X-%02X", $group_id, $device_id, $device_id);
+  my $unique_id = sprintf("00:17:88:5E:%02X:%02X-%02X", $group_id, $device_id, $device_id);
 
   my $item = "";
   # Assume the panel lights (group 6 id 126) is always the first to be added to the list.
@@ -173,10 +173,6 @@ if ($year == 2014) {
 
 if ($model eq 'Wayfarer') {
   push @tags, '/waterheat-label/ /aquahot-label/';
-}
-
-if (substr($model, 0, 8) eq "VanLeigh") {
-  push @tags, '/lpg/';
 }
 
 query "INSERT OR REPLACE INTO configs (key, value) VALUES('lpg', '$lpg');";
@@ -295,7 +291,7 @@ if ($features->{'GeneratorStatus'} == 0) {
 my $gencontrol = 'true';
 my $settings_generator_version = '1';
 
-if (grep(/^$model$/, ('Allegro_Breeze', 'Allegro_RED', 'Phaeton', 'Allegro_Bus', 'Zephyr'))) {
+if (grep(/^$model$/, ('Allegro_RED', 'Phaeton', 'Allegro_Bus', 'Zephyr'))) {
   $settings_generator_version = '0' if ($year == 2014);
   $settings_generator_version = '1' if ($year == 2015);
   $settings_generator_version = '2' if ($year >= 2016);
@@ -309,14 +305,6 @@ if (grep(/^$model$/, ('Allegro_Breeze', 'Allegro_RED', 'Phaeton', 'Allegro_Bus',
     $settings_generator_version = '2';
     if ($year < 2019) {
       # Generator controls not included on RED until 2019
-      $gencontrol = 'false';
-      push @tags, '/gencontrol/';
-    }
-  }
-  if ($model eq 'Allegro_Breeze') {
-    $settings_generator_version = '2';
-    if ($year < 2020) {
-      # I don't know if Generator controls were included on Breeze before 2020
       $gencontrol = 'false';
       push @tags, '/gencontrol/';
     }
@@ -416,11 +404,6 @@ if ($configs{'tvlift'} ne "true") {
     $filter .= " | if (.name == \"TV Up\") then .topic = \"3\" else . end";
     $filter .= " | if (.name == \"TV Down\") then .topic = \"3\" else . end";
     $devicedb .= create_habridge_device(9, 2, $tv_voice_name,  "lift.pl 3", 'u', 'd');
-  } elsif (grep(/^$model$/, ('VanLeigh_Vilano', 'VanLeigh_Beacon'))) {
-    # VanLeigh 5th Wheels use Different TV Lift IDs.
-      $filter .= " | if (.name == \"TV Up\") then .topic = \"4\" else . end";
-      $filter .= " | if (.name == \"TV Down\") then .topic = \"4\" else . end";
-      $devicedb .= create_habridge_device(9, 2, $tv_voice_name,  "lift.pl 4", 'u', 'd');
   } else {
     $devicedb .= create_habridge_device(9, 2, $tv_voice_name,  "lift.pl 0", 'u', 'd');
   }

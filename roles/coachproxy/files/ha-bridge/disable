@@ -1,6 +1,0 @@
-#!/bin/bash
-
-sudo systemctl stop habridge
-sudo mount -o remount,rw /
-sudo systemctl disable habridge
-sudo mount -o remount,ro /

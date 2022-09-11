@@ -32,15 +32,14 @@ const network = global.get('status').network;
 var message = '';
 
 if (!network || !network.WPA || network.WPA.IP === '') {
-    message = "CoachProxy is not connected via WiFi.";
+    message = "eRVin is not connected via WiFi.";
 } else {
-    message = "CoachProxyOS is connected to the WiFi network listed below.";
+    message = "eRVin is connected to the WiFi network listed below.";
 }
 
 // The values that will be displayed are in the `data` and other parameters,
 // but a payload is also always returned so the RBE node can determine when
 // the status has changed.
-const rbe = message + network.WPA.SSID + network.WPA.IP + network.WPA.MAC + network.WPA.STATE + network.WPA.QUALITY +
-  network.AP.SSID + network.AP.IP
+const rbe = message + network.WPA.SSID + network.WPA.IP + network.WPA.MAC + network.WPA.STATE + network.WPA.QUALITY + network.AP.SSID + network.AP.IP
 
 return { payload: rbe, data: network, message: message };

@@ -23,7 +23,12 @@ let pct_full = Math.round(msg.payload['relative level'] / msg.payload.resolution
 
 const labels = ['Fresh', 'Black', 'Grey', 'LPG'];
 
-newmsg.topic = 'CP/TANK_STATUS/' + labels[msg.payload.instance];
+if (msg.payload.instance === 17) {
+  newmsg.topic = 'CP/TANK_STATUS/Black 2';
+} else {
+  newmsg.topic = 'CP/TANK_STATUS/' + labels[msg.payload.instance];
+}
+
 newmsg.payload = pct_full;
 
 return newmsg;

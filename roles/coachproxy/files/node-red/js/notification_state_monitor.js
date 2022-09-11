@@ -74,7 +74,7 @@ for (let notif in notifs) {
         newmsg = {};
         newmsg.payload = 'Too many notifications being sent for ' + n.notif_type + '. ';
         newmsg.payload += 'Pausing for ' + (pause_time / 60 / 1000) + " minutes.\n";
-        newmsg.subject = 'CoachProxy ALERT for ' + n.notif_type;
+        newmsg.subject = 'eRVin ALERT for ' + n.notif_type;
 
         n.notif_pause = Date.now();
         n.notif_count = 0;
@@ -82,7 +82,7 @@ for (let notif in notifs) {
       } else {
         newmsg = {};
         newmsg.payload = n.notif_type + ' has changed from ' + prev_state + ' to ' + msg.payload + ".\n";
-        newmsg.subject = 'CoachProxy ALERT for ' + n.notif_type;
+        newmsg.subject = 'eRVin ALERT for ' + n.notif_type;
 
         if (count == 1) {
           n.notif_interval = Date.now();

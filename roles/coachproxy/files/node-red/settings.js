@@ -69,7 +69,7 @@ module.exports = {
 
     // To enabled pretty-printing of the flow within the flow file, set the following
     //  property to true:
-    flowFilePretty: true,
+    //flowFilePretty: true,
 
     // By default, credentials are encrypted in storage using a generated key. To
     // specify your own secret, set the following property.
@@ -218,11 +218,11 @@ module.exports = {
     // provided here will enable file-based context that flushes to disk every 30 seconds.
     // Refer to the documentation for further options: https://nodered.org/docs/api/context/
     //
-    //contextStorage: {
-    //    default: {
-    //        module:"localfilesystem"
-    //    },
-    //},
+    contextStorage: {
+        default: {
+            module:"localfilesystem"
+        },
+    },
 
     // The following property can be used to order the categories in the editor
     // palette. If a node's category is not in the list, the category will get

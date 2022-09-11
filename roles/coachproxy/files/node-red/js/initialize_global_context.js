@@ -1,3 +1,4 @@
+// 
 //
 // Copyright (C) 2019 Wandertech LLC
 //
@@ -55,6 +56,12 @@ global.set('settings2.pushover_key', '');
 global.set('settings2.remote_username', '');
 global.set('settings2.remote_subdomain', '');
 global.set('settings2.ngrok_auth', '');
+
+//eRVin additions - need to do this elsewhere, dont want to change values if they are already set
+//global.set('enteredzip', 46540); //predefines map location as Middlebury, IN if no user entered zipcode
+//global.set('sofasconcemode', 'on'); //predefines Sofa Sconce circuit as non-dimmable for Entegra 2017+
+//global.set('onmode', 125); //predefines when lights are turned on they resume to previous dim level
+
 
 // Legacy objects
 global.set(['ap', 'ign'], [{}, {}]);

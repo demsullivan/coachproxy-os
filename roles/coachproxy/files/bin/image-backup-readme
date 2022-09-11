@@ -1,0 +1,14 @@
+Copyright 2022 Rob Picchione myervin.com
+
+As described at https://raspberrypi.org/forums/viewtopic.php?p=1528736
+
+20220817 eRVin version updated to latest downloadfrom the above link
+
+image-backup.bak is the original version with MNTPATH="/tmp/img-backup-mnt/"
+
+image-backup is a version modified with MNTPATH="/media/pi/ervinos/img-backup-mnt/"
+
+This was done to prevent the error "Unable to unmount image ROOT partition" when
+trying to umount /tmp/img-backup-mnt/
+
+See the image-backup file comments for details.

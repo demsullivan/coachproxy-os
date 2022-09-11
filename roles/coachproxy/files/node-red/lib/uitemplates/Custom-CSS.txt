@@ -1,0 +1,3 @@
+// name: Custom CSS
+<link rel="stylesheet" href="css/font-awesome-animation.min.css">
+<style type="text/css">button { touch-action: manipulation; }</style>
